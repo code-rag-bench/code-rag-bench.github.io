@@ -1,6 +1,6 @@
 # CodeRAG-Bench
 
-This is the repository that contains source code for the [CodeRAG-Bench](https://code-rag-bench.github.io).
+This is the repository that contains source code for the [CodeRAG-Bench](https://code-rag-bench.github.io) website.
 
 If you find CodeRAG-Bench useful for your work please cite:
 ```
