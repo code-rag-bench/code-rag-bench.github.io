@@ -129,48 +129,129 @@
     </div>
   </div>
 </section>
-
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
+        <img src="static/images/code_rag_teaser.png" alt="CodeRAG Bench.">
+        <br>
+        <br>
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Many programs are challenging for language models (LMs) to generate using their parametric 
-            knowledge alone, yet most works generate programs solely based on problem descriptions. 
-            Given the success of retrieval-augmented generation in many text-oriented tasks, providing 
-            external resources such as library documentation or tutorials can facilitate code generation 
-            as well. Despite a few efforts on this, retrieval-augmented code generation (RACG) is still 
+            Many programs are challenging for language models (LMs) to generate using their parametric
+            knowledge alone, yet most works generate programs solely based on problem descriptions.
+            Given the success of retrieval-augmented generation in many text-oriented tasks, providing
+            external resources such as library documentation or tutorials can facilitate code generation
+            as well. Despite a few efforts on this, retrieval-augmented code generation (RACG) is still
             under-explored on various tasks and retrieval sources.
           </p>
           <p>
-            In this work, we conduct a systematic, large-scale analysis by asking: 
-            <i>in what scenarios can current retrievers benefit code generation models? and what challenges do they have?</i> 
-            We first curate a comprehensive evaluation benchmark, CodeRAG-Bench, encompassing three 
-            categories of code generation tasks, including general programming, open-domain, and 
-            repository-level problems. We also aggregate documents from five sources for models to 
-            retrieve contexts from: competition solutions, online tutorials, library documentation, 
-            StackOverflow posts, and GitHub repositories. 
+            In this work, we conduct a systematic, large-scale analysis by asking:
+            <i>in what scenarios can current retrievers benefit code generation models? and what challenges do they have?</i>
+            We first curate a comprehensive evaluation benchmark, CodeRAG-Bench, encompassing three
+            categories of code generation tasks, including general programming, open-domain, and
+            repository-level problems. We also aggregate documents from five sources for models to
+            retrieve contexts from: competition solutions, online tutorials, library documentation,
+            StackOverflow posts, and GitHub repositories.
           </p>
           <p>
-            We examine top-performing models on CodeRAG-Bench by providing contexts retrieved from each 
-            or multiple sources. Although high-quality contexts can benefit code generation, current 
-            retrieval models often struggle to fetch useful contexts, and generation models minimally 
-            improve when having limited context lengths or RAG abilities. We hope the community uses 
-            CodeRAG-Bench as an effective testbed and continues to build better code-oriented RAG 
+            We examine top-performing models on CodeRAG-Bench by providing contexts retrieved from each
+            or multiple sources. Although high-quality contexts can benefit code generation, current
+            retrieval models often struggle to fetch useful contexts, and generation models minimally
+            improve when having limited context lengths or RAG abilities. We hope the community uses
+            CodeRAG-Bench as an effective testbed and continues to build better code-oriented RAG
             systems to leverage the full power of RACG.
           </p>
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
-
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">CodeRAG-Bench</h2>
+          <div class="content has-text-justified">
+            <p>
+            <b>CodeRAG-Bench</b> is designed to enable rigorous evaluations and advance research on retrieval-augmented code generation. CodeRAG-Bench has some unique characteristics:
+            <ul>
+              <li><b>Diverse tasks:</b>CodeRAG-Bench consists of eight diverse coding taks including general programming (e.g., <a href="https://github.com/openai/human-eval">HumanEval</a>, <a href="https://livecodebench.github.io/">LiveCodeBench</a>), open-domain programming (e.g., <a href="https://code-eval.github.io/">ODEX</a>) and repository-level programming (e.g., <a href="https://www.swebench.com/">SWEBench</a>).</li>
+              <li><b>Rigorous and reproducible evaluation:</b> We provide high-quality annotation of ground-truth documents to enable reliable retrieval evaluations, and for final code rag performance, we use  execution-based evaluation to asks to rigorouslly measure functional correctness.</li>
+              <li><b>Unified interface:</b>our codebase provides a unified interface for retrieval, augmented generation, and evaluations. We support diverse libraries and APIs for retrieval and LM inferences, so that you can easily test new models via <a href="https://sbert.net/">sentence-transformer</a>, <a href="https://huggingface.co/docs/transformers/en/index">huggingface transformer</a>, and proprietry APIs including <a href="https://platform.openai.com/docs/overview">OpenAI API</a>, <a href="https://docs.voyageai.com/docs/introduction">Voyage AI API</a></li>
+            </ul>
+            </p>
+            <img src="static/images/code_rag_bench_overview.png" alt="CodeRAG-Bench overview.">
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+    </section>
+  </div>
+    <!--/ Abstract. -->
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Results and Analysis</h2>
+          <div class="content has-text-justified">
+            <p>
+            <b>CodeRAG-Bench</b> is the first large-scale code retrieval and RAG benchmark that consists of diverse programing tasks and heterogeneous retrieval sources collected from Github, StackExchange, Tutorials and existing programming solutions.
+          </p>
+          <h4 class="title is-3">Retrieval results</h4>
+          <p>
+            We found that while larger retrieval models often show superior performance, still <b>retrieval performance is limited on more challenging tasks</b> like DS-1000, ODEX and SWE-Bench, which may limit code RAG effectiveness.
+          </p>
+          <p>
+            Larger embedding models such as <a href="https://huggingface.co/Salesforce/SFR-Embedding-Mistral">SFR-Mistral</a> or Open AI embedding models also show significant increase of inference latency or index size.
+          </p>
+          <img src="static/images/code_rag_bench_retrieval_result.png" alt="CodeRAG-Bench overview.">
+          </div>
+          <div class="content has-text-justified">
+          <h4 class="title is-3">Generation results (with gold document)</h4>
+          <p>
+            We found that if gold documents are provided, <b>most of the models including GPT-4 or GPT-3.5 (ChatGPT) can get significant gains on diverse tasks</b> including general programing as well as repository level coding.
+          </p>
+          <img src="static/images/code_rag_bench_generation_result.png" alt="CodeRAG-Bench overview.">
+          </div>
+          <div class="content has-text-justified">
+            <h4 class="title is-3">RAG with canonical datastore</h4>
+            <p>
+            When we evaluate end-to-end RAG performance combining state-of-the-art generation and retrieval models, we see major improvements while in some tasks, we also observe <b>gap between oracle retrieval and current model retrieval</b>.
+            </p>
+            <p>
+              <b>Some models including DeepSeekCoder benefit less from retrieval at infernece time</b>, suggesting that there is space for improvements to optimize code LMs for RAG scenarios.
+              </p>
+            <img src="static/images/code_rag_rag_results.png" alt="CodeRAG-Bench overview.">
+            </div>
+            <div class="content has-text-justified">
+              <h4 class="title is-3">RAG with open datastore</h4>
+              <p>
+                We found <b>in many coding tasks, retrieving from a larger, diverse datastore can give significant gains even on top of state-of-the-art GPT-4.</b>
+                This implies that while currently many code RAG only uses canonical data store (e.g., target repository), retrieving from larger datastore consisting of documents from different sources could further unlock the effectiveness of code RAG.
+              </p>
+              <img src="static/images/code_rag_bench_api_rag.png" alt="CodeRAG-Bench overview.">
+              </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Reprduction and Leaderboard</h2>
+          <div class="content has-text-justified">
+            <p>
+            <b>CodeRAG-Bench</b> code is available at <a href="https://github.com/code-rag-bench/code-rag-bench">Github</a>, and all resources are available at <a href="https://huggingface.co/code-rag-bench">Huggingface Space</a>.
+            </p>
+            <p>
+              Instructions to submit to the CodeRAG-Bench leaderboard will be available soon on Github.
+              </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
