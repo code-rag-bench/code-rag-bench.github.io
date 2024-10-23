@@ -5,7 +5,7 @@ This is the repository that contains source code for the [CodeRAG-Bench](https:/
 If you find CodeRAG-Bench useful for your work please cite:
 ```
 @article{wang2024coderagbench,
-  author = {Wang, Zora Z. and Asai, Akari and Yu, Xiyan V. and Xu, Frank F. and Xie, Yiqing and Neubig, Graham and Fried, Daniel},
+  author = {Wang, Zora Z. and Asai, Akari and Yu, Xinyan V. and Xu, Frank F. and Xie, Yiqing and Neubig, Graham and Fried, Daniel},
   title  = {CodeRAG-Bench: Can Retrieval Augment Code Generation?},
   year   = {2024},
 }
